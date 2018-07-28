@@ -1,11 +1,48 @@
 <ion-header>
+
   <ion-navbar>
-    <ion-title>
-      Solo PDF 
-    </ion-title>
+    <ion-buttons>
+    <button ion-button icon-only [disabled]="actualPage <= 1" (click)="backPaginini()">
+  <ion-icon name="rewind"></ion-icon>
+</button>
+</ion-buttons>
+
+<ion-title>
+  Paginini {{actualPage}} de {{pages}}
+</ion-title>
+
+<ion-buttons end>
+  <button ion-button icon-only (click)="nextPaginini()" [disabled]="actualPage == pages">
+    <ion-icon name="fastforward"></ion-icon>
+  </button>
+</ion-buttons>
   </ion-navbar>
 </ion-header>
- 
+
 <ion-content padding>
-  <button ion-button full (click)="open()">Péguele</button>
+  <!-- <button ion-button full (click)="open()">Péguele</button>
+  <button ion-button full (click)="openAndroid()">Android .l.</button> -->
+  <div #viewerContainer
+         class="viewer-container">
+        <div #viewer
+             class="viewer">
+            <ng-container #pagesContainer>
+                <div #pageContainer
+                     class="page"
+                     [style.width.px]="pageContainerUnique.width"
+                     [style.height.px]="pageContainerUnique.height">
+
+                    <div class="canvas-wrapper"
+                         #canvasWrapper>
+                        <canvas class="page-canvas"
+                                #canvas></canvas>
+
+                    </div>
+                    <div #textContainer
+                         class="text-layer selectable">
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
 </ion-content>
