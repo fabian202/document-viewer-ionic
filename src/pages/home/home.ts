@@ -32,6 +32,7 @@ export class HomePage {
 
     pages: number = 0;
     actualPage: number = 0;
+    base64img: any;
 
 
   constructor(public navCtrl: NavController, private document: DocumentViewer, private file: File, private transfer: FileTransfer, private platform: Platform, public loadingCtrl: LoadingController) { }
@@ -75,7 +76,7 @@ export class HomePage {
     this.pageContainerUnique.canvasWrapper = this.canvasWrapperRef.nativeElement as HTMLCanvasElement;
     this.pageContainerUnique.canvas = this.canvasRef.nativeElement as HTMLCanvasElement;
     this.pageContainerUnique.textContainer = this.textContainerRef.nativeElement as HTMLCanvasElement;
-    this.loadPdf('assets/db.pdf');
+    this.loadPdf('assets/sample.pdf');
 }
 
 
@@ -145,7 +146,7 @@ export class HomePage {
       canvasContext.mozImageSmoothingEnabled = false;
       canvasContext.oImageSmoothingEnabled = false;
 
-      let viewport = pdfPage.getViewport(1) as PDFPageViewport;
+      let viewport = pdfPage.getViewport(2) as PDFPageViewport;
 
       canvas.width = viewport.width;
       canvas.height = viewport.height;
@@ -157,19 +158,22 @@ export class HomePage {
       textContainer.style.height = `${viewport.height}px`;
 
       //fix for 4K
+      
+      
+      // debugger;
+    //   if (window.devicePixelRatio > 1) {
+        //   let canvasWidth = canvas.width;
+        //   let canvasHeight = canvas.height;
 
+        //   canvas.width = canvasWidth * window.devicePixelRatio;
+        //   canvas.height = canvasHeight * window.devicePixelRatio;
+        //   canvas.style.width = canvasWidth + "px";
+        //   canvas.style.height = canvasHeight + "px";
 
-      if (window.devicePixelRatio > 1) {
-          let canvasWidth = canvas.width;
-          let canvasHeight = canvas.height;
-
-          canvas.width = canvasWidth * window.devicePixelRatio;
-          canvas.height = canvasHeight * window.devicePixelRatio;
-          canvas.style.width = canvasWidth + "px";
-          canvas.style.height = canvasHeight + "px";
-
-          canvasContext.scale(window.devicePixelRatio, window.devicePixelRatio);
-      }
+        // canvasContext.scale(1.3, 1.3);
+        // canvasContext.scale(1.3, 1.3);
+        //   canvasContext.scale(window.devicePixelRatio, window.devicePixelRatio);
+    //   }
 
       // THIS RENDERS THE PAGE !!!!!!
 
@@ -179,16 +183,21 @@ export class HomePage {
           viewport
       });
 
+     
+
       let container = textContainer;
 
       return renderTask.then(() => {
           //console.error("I WORK JUST UNTIL HERE");
 
-
+        console.log('return renderTask');
+        this.base64img = canvas.toDataURL();
+        
           return pdfPage.getTextContent();
 
       }).then((textContent) => {
-
+        console.log('then((textContent');
+        
           let textLayer: HTMLElement;
 
 
@@ -205,6 +214,8 @@ export class HomePage {
               viewport,
               textDivs: []
           });
+          
+        //   console.log('data uri', canvas.toDataURL());
 
           return true;
       });

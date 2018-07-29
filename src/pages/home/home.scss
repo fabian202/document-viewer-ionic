@@ -1,8 +1,12 @@
 page-home {
+    // .scroll-content {
+    //     overflow-x: scroll; 
+    // }
     .viewer-container {
         width: 100%;
-        overflow: hidden;
-        padding: 0 16px;
+        // overflow: hidden;
+        // padding: 0 16px;
+        display: none;
         .viewer {
             position: relative;
             width: 100%;
@@ -10,12 +14,12 @@ page-home {
                 direction: ltr;
                 width: 100%;
                 position: relative;
-                overflow: visible;
+                // overflow: visible;
                 background-clip: content-box;
                 background-color: white;
                 margin: 0 auto 35px;
                 .canvas-wrapper {
-                    overflow: hidden;
+                    // overflow: hidden;
                     position: absolute;
                 }
                 &[data-loaded='true'] {
@@ -44,7 +48,7 @@ page-home {
                     top: 0;
                     right: 0;
                     bottom: 0;
-                    overflow: hidden;
+                    // overflow: hidden;
                     opacity: 0.2;
                     line-height: 1.0;
                     & > div {
