@@ -11,47 +11,10 @@
 </ion-header>
 
 <ion-content>
+  Hola
+  <!-- <viewer></viewer> -->
   <!-- <button ion-button full (click)="open()">Péguele</button>
   <button ion-button full (click)="openAndroid()">Android .l.</button> -->
 
-  <img [src]="base64img"  imageViewer>
-
-  <!-- <zoom-area style="height: 600px"> -->
-  <div #viewerContainer class="viewer-container">
-        <div #viewer class="viewer">
-            <ng-container #pagesContainer>
-                <div #pageContainer class="page"
-                     [style.width.px]="pageContainerUnique.width"
-                     [style.height.px]="pageContainerUnique.height">
-                    <div class="canvas-wrapper" #canvasWrapper>
-                      <ion-scroll scrollX="true" scrollY="true" style="height: 100vh">
-                          <canvas class="page-canvas" #canvas></canvas>
-                        </ion-scroll>
-                      </div>
-                      <div #textContainer
-                      class="text-layer selectable">
-                    </div>
-                  </div>
-                </ng-container>
-              </div>
-            </div>
           <!-- </zoom-area> -->
 </ion-content>
-
-<ion-footer no-border>
-    <ion-toolbar>
-        <ion-buttons>
-            <button ion-button icon-only [disabled]="actualPage <= 1" (click)="backPaginini()">
-          <ion-icon name="rewind"></ion-icon>
-        </button>
-        </ion-buttons>
-      <ion-title>
-          Paginini {{actualPage}} de {{pages}}
-      </ion-title>
-      <ion-buttons end>
-          <button ion-button icon-only (click)="nextPaginini()" [disabled]="actualPage == pages">
-            <ion-icon name="fastforward"></ion-icon>
-          </button>
-        </ion-buttons>
-    </ion-toolbar>
-  </ion-footer>

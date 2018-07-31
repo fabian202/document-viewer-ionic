@@ -6,7 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
@@ -14,8 +13,7 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -24,8 +22,7 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,
