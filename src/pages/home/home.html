@@ -1,20 +1,10 @@
 <ion-header>
-
   <ion-navbar>
-
-
-<ion-title>
-  Título del doc
-</ion-title>
-
+    <ion-title>
+      Título del doc
+    </ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
-  Hola
-  <!-- <viewer></viewer> -->
-  <!-- <button ion-button full (click)="open()">Péguele</button>
-  <button ion-button full (click)="openAndroid()">Android .l.</button> -->
-
-          <!-- </zoom-area> -->
+  <viewer [path]="'assets/db.pdf'"></viewer>
 </ion-content>

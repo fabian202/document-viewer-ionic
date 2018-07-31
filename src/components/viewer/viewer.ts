@@ -1,21 +1,16 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Input } from '@angular/core';
 import { LoadingController } from 'ionic-angular';
-
+//
 import * as PDFJS from "pdfjs-dist/webpack.js";
 import { PDFPageProxy, PDFPageViewport, PDFRenderTask } from 'pdfjs-dist';
 
-/**
- * Generated class for the ViewerComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'viewer',
   templateUrl: 'viewer.html'
 })
-export class ViewerComponent {
-
+export class ViewerComponent implements OnInit {
+  @Input()
+  path: any;
   pdfDocument: PDFJS.PDFDocumentProxy;
     PDFJSViewer = PDFJS;
     pageContainerUnique = {
@@ -35,18 +30,21 @@ export class ViewerComponent {
     pages: number = 0;
     actualPage: number = 0;
     base64img: any;
-
-  text: string;
+  //
+  // text: string;
+  // constructor(public loadingCtrl: LoadingController){ }
 
   constructor(public loadingCtrl: LoadingController) {
     console.log('Hello ViewerComponent Component');
-    this.text = 'Hello World';
+  }
 
+  ngOnInit() {
+    console.log('aquí hacemos el load');
     this.pageContainerUnique.element = this.pageContainerRef.nativeElement as HTMLElement;
     this.pageContainerUnique.canvasWrapper = this.canvasWrapperRef.nativeElement as HTMLCanvasElement;
     this.pageContainerUnique.canvas = this.canvasRef.nativeElement as HTMLCanvasElement;
     this.pageContainerUnique.textContainer = this.textContainerRef.nativeElement as HTMLCanvasElement;
-    this.loadPdf('assets/db.pdf');
+    this.loadPdf(this.path);
   }
 
   loadPdf(pdfPath: string): Promise<boolean> {

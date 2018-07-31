@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { HomePage } from './home';
-// import { ViewerComponentModule} from "../../components/viewer/viewer.module";
+import { ViewerComponentModule} from "../../components/viewer/viewer.module";
 
 @NgModule({
 	declarations: [HomePage],
 	imports: [
-    // ViewerComponentModule,
+    ViewerComponentModule,
     IonicPageModule.forChild(HomePage)
   ],
-	exports: []
+	providers: []
 })
 export class HomePageModule {}
